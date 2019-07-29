@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.lvpeng.dao.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="cn.lvpeng.model.UserInfo" >
+    <id column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="idType" property="idtype" jdbcType="VARCHAR" />
+    <result column="idNo" property="idno" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="SMALLINT" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="nation" property="nation" jdbcType="CHAR" />
+    <result column="permanentResidenceType" property="permanentresidencetype" jdbcType="SMALLINT" />
+    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="contacts" property="contacts" jdbcType="VARCHAR" />
+    <result column="contactsPhone" property="contactsphone" jdbcType="VARCHAR" />
+    <result column="educationDegree" property="educationdegree" jdbcType="SMALLINT" />
+    <result column="occupation" property="occupation" jdbcType="SMALLINT" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="workUnit" property="workunit" jdbcType="VARCHAR" />
+    <result column="maritalStatus" property="maritalstatus" jdbcType="SMALLINT" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="createUserId" property="createuserid" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="lastModifierUserId" property="lastmodifieruserid" jdbcType="VARCHAR" />
+    <result column="lastModificationTime" property="lastmodificationtime" jdbcType="TIMESTAMP" />
+    <result column="isDeleted" property="isdeleted" jdbcType="BIT" />
+    <result column="deletedTime" property="deletedtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    userId, idType, idNo, name, gender, birthday, nation, permanentResidenceType, telephone, 
+    contacts, contactsPhone, educationDegree, occupation, address, workUnit, maritalStatus, 
+    status, createUserId, createTime, lastModifierUserId, lastModificationTime, isDeleted, 
+    deletedTime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.lvpeng.model.UserInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_info
+    where userId = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_info
+    where userId = #{userid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.lvpeng.model.UserInfoExample" >
+    delete from user_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.lvpeng.model.UserInfo" >
+    insert into user_info (userId, idType, idNo, 
+      name, gender, birthday, 
+      nation, permanentResidenceType, telephone, 
+      contacts, contactsPhone, educationDegree, 
+      occupation, address, workUnit, 
+      maritalStatus, status, createUserId, 
+      createTime, lastModifierUserId, lastModificationTime, 
+      isDeleted, deletedTime)
+    values (#{userid,jdbcType=INTEGER}, #{idtype,jdbcType=VARCHAR}, #{idno,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{gender,jdbcType=SMALLINT}, #{birthday,jdbcType=DATE}, 
+      #{nation,jdbcType=CHAR}, #{permanentresidencetype,jdbcType=SMALLINT}, #{telephone,jdbcType=VARCHAR}, 
+      #{contacts,jdbcType=VARCHAR}, #{contactsphone,jdbcType=VARCHAR}, #{educationdegree,jdbcType=SMALLINT}, 
+      #{occupation,jdbcType=SMALLINT}, #{address,jdbcType=VARCHAR}, #{workunit,jdbcType=VARCHAR}, 
+      #{maritalstatus,jdbcType=SMALLINT}, #{status,jdbcType=VARCHAR}, #{createuserid,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{lastmodifieruserid,jdbcType=VARCHAR}, #{lastmodificationtime,jdbcType=TIMESTAMP}, 
+      #{isdeleted,jdbcType=BIT}, #{deletedtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.lvpeng.model.UserInfo" >
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="idtype != null" >
+        idType,
+      </if>
+      <if test="idno != null" >
+        idNo,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="nation != null" >
+        nation,
+      </if>
+      <if test="permanentresidencetype != null" >
+        permanentResidenceType,
+      </if>
+      <if test="telephone != null" >
+        telephone,
+      </if>
+      <if test="contacts != null" >
+        contacts,
+      </if>
+      <if test="contactsphone != null" >
+        contactsPhone,
+      </if>
+      <if test="educationdegree != null" >
+        educationDegree,
+      </if>
+      <if test="occupation != null" >
+        occupation,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="workunit != null" >
+        workUnit,
+      </if>
+      <if test="maritalstatus != null" >
+        maritalStatus,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createuserid != null" >
+        createUserId,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="lastmodifieruserid != null" >
+        lastModifierUserId,
+      </if>
+      <if test="lastmodificationtime != null" >
+        lastModificationTime,
+      </if>
+      <if test="isdeleted != null" >
+        isDeleted,
+      </if>
+      <if test="deletedtime != null" >
+        deletedTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="idtype != null" >
+        #{idtype,jdbcType=VARCHAR},
+      </if>
+      <if test="idno != null" >
+        #{idno,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=SMALLINT},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="nation != null" >
+        #{nation,jdbcType=CHAR},
+      </if>
+      <if test="permanentresidencetype != null" >
+        #{permanentresidencetype,jdbcType=SMALLINT},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null" >
+        #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsphone != null" >
+        #{contactsphone,jdbcType=VARCHAR},
+      </if>
+      <if test="educationdegree != null" >
+        #{educationdegree,jdbcType=SMALLINT},
+      </if>
+      <if test="occupation != null" >
+        #{occupation,jdbcType=SMALLINT},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="workunit != null" >
+        #{workunit,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalstatus != null" >
+        #{maritalstatus,jdbcType=SMALLINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createuserid != null" >
+        #{createuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastmodifieruserid != null" >
+        #{lastmodifieruserid,jdbcType=VARCHAR},
+      </if>
+      <if test="lastmodificationtime != null" >
+        #{lastmodificationtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdeleted != null" >
+        #{isdeleted,jdbcType=BIT},
+      </if>
+      <if test="deletedtime != null" >
+        #{deletedtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.lvpeng.model.UserInfoExample" resultType="java.lang.Integer" >
+    select count(*) from user_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update user_info
+    <set >
+      <if test="record.userid != null" >
+        userId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.idtype != null" >
+        idType = #{record.idtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idno != null" >
+        idNo = #{record.idno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gender != null" >
+        gender = #{record.gender,jdbcType=SMALLINT},
+      </if>
+      <if test="record.birthday != null" >
+        birthday = #{record.birthday,jdbcType=DATE},
+      </if>
+      <if test="record.nation != null" >
+        nation = #{record.nation,jdbcType=CHAR},
+      </if>
+      <if test="record.permanentresidencetype != null" >
+        permanentResidenceType = #{record.permanentresidencetype,jdbcType=SMALLINT},
+      </if>
+      <if test="record.telephone != null" >
+        telephone = #{record.telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contacts != null" >
+        contacts = #{record.contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactsphone != null" >
+        contactsPhone = #{record.contactsphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.educationdegree != null" >
+        educationDegree = #{record.educationdegree,jdbcType=SMALLINT},
+      </if>
+      <if test="record.occupation != null" >
+        occupation = #{record.occupation,jdbcType=SMALLINT},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workunit != null" >
+        workUnit = #{record.workunit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maritalstatus != null" >
+        maritalStatus = #{record.maritalstatus,jdbcType=SMALLINT},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createuserid != null" >
+        createUserId = #{record.createuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastmodifieruserid != null" >
+        lastModifierUserId = #{record.lastmodifieruserid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastmodificationtime != null" >
+        lastModificationTime = #{record.lastmodificationtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isdeleted != null" >
+        isDeleted = #{record.isdeleted,jdbcType=BIT},
+      </if>
+      <if test="record.deletedtime != null" >
+        deletedTime = #{record.deletedtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update user_info
+    set userId = #{record.userid,jdbcType=INTEGER},
+      idType = #{record.idtype,jdbcType=VARCHAR},
+      idNo = #{record.idno,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      gender = #{record.gender,jdbcType=SMALLINT},
+      birthday = #{record.birthday,jdbcType=DATE},
+      nation = #{record.nation,jdbcType=CHAR},
+      permanentResidenceType = #{record.permanentresidencetype,jdbcType=SMALLINT},
+      telephone = #{record.telephone,jdbcType=VARCHAR},
+      contacts = #{record.contacts,jdbcType=VARCHAR},
+      contactsPhone = #{record.contactsphone,jdbcType=VARCHAR},
+      educationDegree = #{record.educationdegree,jdbcType=SMALLINT},
+      occupation = #{record.occupation,jdbcType=SMALLINT},
+      address = #{record.address,jdbcType=VARCHAR},
+      workUnit = #{record.workunit,jdbcType=VARCHAR},
+      maritalStatus = #{record.maritalstatus,jdbcType=SMALLINT},
+      status = #{record.status,jdbcType=VARCHAR},
+      createUserId = #{record.createuserid,jdbcType=VARCHAR},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      lastModifierUserId = #{record.lastmodifieruserid,jdbcType=VARCHAR},
+      lastModificationTime = #{record.lastmodificationtime,jdbcType=TIMESTAMP},
+      isDeleted = #{record.isdeleted,jdbcType=BIT},
+      deletedTime = #{record.deletedtime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.lvpeng.model.UserInfo" >
+    update user_info
+    <set >
+      <if test="idtype != null" >
+        idType = #{idtype,jdbcType=VARCHAR},
+      </if>
+      <if test="idno != null" >
+        idNo = #{idno,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=SMALLINT},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="nation != null" >
+        nation = #{nation,jdbcType=CHAR},
+      </if>
+      <if test="permanentresidencetype != null" >
+        permanentResidenceType = #{permanentresidencetype,jdbcType=SMALLINT},
+      </if>
+      <if test="telephone != null" >
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null" >
+        contacts = #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsphone != null" >
+        contactsPhone = #{contactsphone,jdbcType=VARCHAR},
+      </if>
+      <if test="educationdegree != null" >
+        educationDegree = #{educationdegree,jdbcType=SMALLINT},
+      </if>
+      <if test="occupation != null" >
+        occupation = #{occupation,jdbcType=SMALLINT},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="workunit != null" >
+        workUnit = #{workunit,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalstatus != null" >
+        maritalStatus = #{maritalstatus,jdbcType=SMALLINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createuserid != null" >
+        createUserId = #{createuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastmodifieruserid != null" >
+        lastModifierUserId = #{lastmodifieruserid,jdbcType=VARCHAR},
+      </if>
+      <if test="lastmodificationtime != null" >
+        lastModificationTime = #{lastmodificationtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdeleted != null" >
+        isDeleted = #{isdeleted,jdbcType=BIT},
+      </if>
+      <if test="deletedtime != null" >
+        deletedTime = #{deletedtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where userId = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.lvpeng.model.UserInfo" >
+    update user_info
+    set idType = #{idtype,jdbcType=VARCHAR},
+      idNo = #{idno,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=SMALLINT},
+      birthday = #{birthday,jdbcType=DATE},
+      nation = #{nation,jdbcType=CHAR},
+      permanentResidenceType = #{permanentresidencetype,jdbcType=SMALLINT},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      contacts = #{contacts,jdbcType=VARCHAR},
+      contactsPhone = #{contactsphone,jdbcType=VARCHAR},
+      educationDegree = #{educationdegree,jdbcType=SMALLINT},
+      occupation = #{occupation,jdbcType=SMALLINT},
+      address = #{address,jdbcType=VARCHAR},
+      workUnit = #{workunit,jdbcType=VARCHAR},
+      maritalStatus = #{maritalstatus,jdbcType=SMALLINT},
+      status = #{status,jdbcType=VARCHAR},
+      createUserId = #{createuserid,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      lastModifierUserId = #{lastmodifieruserid,jdbcType=VARCHAR},
+      lastModificationTime = #{lastmodificationtime,jdbcType=TIMESTAMP},
+      isDeleted = #{isdeleted,jdbcType=BIT},
+      deletedTime = #{deletedtime,jdbcType=TIMESTAMP}
+    where userId = #{userid,jdbcType=INTEGER}
+  </update>
+</mapper>

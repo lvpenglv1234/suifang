@@ -1,0 +1,738 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.lvpeng.dao.TumorsFollowUpInfoMapper" >
+  <resultMap id="BaseResultMap" type="cn.lvpeng.model.TumorsFollowUpInfo" >
+    <id column="detailID" property="detailid" jdbcType="INTEGER" />
+    <result column="followUpID" property="followupid" jdbcType="INTEGER" />
+    <result column="isResidenceVerification" property="isresidenceverification" jdbcType="BIT" />
+    <result column="unverifiedResidenceReasons" property="unverifiedresidencereasons" jdbcType="VARCHAR" />
+    <result column="passiveSmokingPlaces" property="passivesmokingplaces" jdbcType="VARCHAR" />
+    <result column="smokingAge" property="smokingage" jdbcType="SMALLINT" />
+    <result column="quitSmokingAge" property="quitsmokingage" jdbcType="SMALLINT" />
+    <result column="smokingNum" property="smokingnum" jdbcType="SMALLINT" />
+    <result column="tumorsFamilyHistory" property="tumorsfamilyhistory" jdbcType="VARCHAR" />
+    <result column="relationshipWithPatient" property="relationshipwithpatient" jdbcType="VARCHAR" />
+    <result column="tumorFamilyHistoryType" property="tumorfamilyhistorytype" jdbcType="VARCHAR" />
+    <result column="firstSymptomsDate" property="firstsymptomsdate" jdbcType="DATE" />
+    <result column="firstVisitDate" property="firstvisitdate" jdbcType="DATE" />
+    <result column="tumorTreatmentHospital" property="tumortreatmenthospital" jdbcType="VARCHAR" />
+    <result column="firstOperationHospital" property="firstoperationhospital" jdbcType="VARCHAR" />
+    <result column="firstOperationDate" property="firstoperationdate" jdbcType="DATE" />
+    <result column="firstOperationType" property="firstoperationtype" jdbcType="VARCHAR" />
+    <result column="reportCardNo" property="reportcardno" jdbcType="VARCHAR" />
+    <result column="nextUnverifiedResidenceReasons" property="nextunverifiedresidencereasons" jdbcType="VARCHAR" />
+    <result column="isMetastasis" property="ismetastasis" jdbcType="BIT" />
+    <result column="metastasisSite" property="metastasissite" jdbcType="VARCHAR" />
+    <result column="isRecurrence" property="isrecurrence" jdbcType="BIT" />
+    <result column="recurrenceNumber" property="recurrencenumber" jdbcType="SMALLINT" />
+    <result column="recurrenceDate" property="recurrencedate" jdbcType="DATE" />
+    <result column="therapeuticModalities" property="therapeuticmodalities" jdbcType="VARCHAR" />
+    <result column="patientStatus" property="patientstatus" jdbcType="VARCHAR" />
+    <result column="weight" property="weight" jdbcType="DECIMAL" />
+    <result column="isSmoking" property="issmoking" jdbcType="BIT" />
+    <result column="guidanceContents" property="guidancecontents" jdbcType="VARCHAR" />
+    <result column="karnofsky" property="karnofsky" jdbcType="INTEGER" />
+    <result column="referralAgency" property="referralagency" jdbcType="VARCHAR" />
+    <result column="referralCauses" property="referralcauses" jdbcType="VARCHAR" />
+    <result column="turnover" property="turnover" jdbcType="SMALLINT" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="lastModifierUser" property="lastmodifieruser" jdbcType="VARCHAR" />
+    <result column="lastModificationTime" property="lastmodificationtime" jdbcType="TIMESTAMP" />
+    <result column="isDeleted" property="isdeleted" jdbcType="BIT" />
+    <result column="deletedTime" property="deletedtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    detailID, followUpID, isResidenceVerification, unverifiedResidenceReasons, passiveSmokingPlaces, 
+    smokingAge, quitSmokingAge, smokingNum, tumorsFamilyHistory, relationshipWithPatient, 
+    tumorFamilyHistoryType, firstSymptomsDate, firstVisitDate, tumorTreatmentHospital, 
+    firstOperationHospital, firstOperationDate, firstOperationType, reportCardNo, nextUnverifiedResidenceReasons, 
+    isMetastasis, metastasisSite, isRecurrence, recurrenceNumber, recurrenceDate, therapeuticModalities, 
+    patientStatus, weight, isSmoking, guidanceContents, karnofsky, referralAgency, referralCauses, 
+    turnover, createTime, lastModifierUser, lastModificationTime, isDeleted, deletedTime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.lvpeng.model.TumorsFollowUpInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tumors_follow_up_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tumors_follow_up_info
+    where detailID = #{detailid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tumors_follow_up_info
+    where detailID = #{detailid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.lvpeng.model.TumorsFollowUpInfoExample" >
+    delete from tumors_follow_up_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.lvpeng.model.TumorsFollowUpInfo" >
+    insert into tumors_follow_up_info (detailID, followUpID, isResidenceVerification, 
+      unverifiedResidenceReasons, passiveSmokingPlaces, 
+      smokingAge, quitSmokingAge, smokingNum, 
+      tumorsFamilyHistory, relationshipWithPatient, 
+      tumorFamilyHistoryType, firstSymptomsDate, 
+      firstVisitDate, tumorTreatmentHospital, firstOperationHospital, 
+      firstOperationDate, firstOperationType, reportCardNo, 
+      nextUnverifiedResidenceReasons, isMetastasis, 
+      metastasisSite, isRecurrence, recurrenceNumber, 
+      recurrenceDate, therapeuticModalities, patientStatus, 
+      weight, isSmoking, guidanceContents, 
+      karnofsky, referralAgency, referralCauses, 
+      turnover, createTime, lastModifierUser, 
+      lastModificationTime, isDeleted, deletedTime
+      )
+    values (#{detailid,jdbcType=INTEGER}, #{followupid,jdbcType=INTEGER}, #{isresidenceverification,jdbcType=BIT}, 
+      #{unverifiedresidencereasons,jdbcType=VARCHAR}, #{passivesmokingplaces,jdbcType=VARCHAR}, 
+      #{smokingage,jdbcType=SMALLINT}, #{quitsmokingage,jdbcType=SMALLINT}, #{smokingnum,jdbcType=SMALLINT}, 
+      #{tumorsfamilyhistory,jdbcType=VARCHAR}, #{relationshipwithpatient,jdbcType=VARCHAR}, 
+      #{tumorfamilyhistorytype,jdbcType=VARCHAR}, #{firstsymptomsdate,jdbcType=DATE}, 
+      #{firstvisitdate,jdbcType=DATE}, #{tumortreatmenthospital,jdbcType=VARCHAR}, #{firstoperationhospital,jdbcType=VARCHAR}, 
+      #{firstoperationdate,jdbcType=DATE}, #{firstoperationtype,jdbcType=VARCHAR}, #{reportcardno,jdbcType=VARCHAR}, 
+      #{nextunverifiedresidencereasons,jdbcType=VARCHAR}, #{ismetastasis,jdbcType=BIT}, 
+      #{metastasissite,jdbcType=VARCHAR}, #{isrecurrence,jdbcType=BIT}, #{recurrencenumber,jdbcType=SMALLINT}, 
+      #{recurrencedate,jdbcType=DATE}, #{therapeuticmodalities,jdbcType=VARCHAR}, #{patientstatus,jdbcType=VARCHAR}, 
+      #{weight,jdbcType=DECIMAL}, #{issmoking,jdbcType=BIT}, #{guidancecontents,jdbcType=VARCHAR}, 
+      #{karnofsky,jdbcType=INTEGER}, #{referralagency,jdbcType=VARCHAR}, #{referralcauses,jdbcType=VARCHAR}, 
+      #{turnover,jdbcType=SMALLINT}, #{createtime,jdbcType=TIMESTAMP}, #{lastmodifieruser,jdbcType=VARCHAR}, 
+      #{lastmodificationtime,jdbcType=TIMESTAMP}, #{isdeleted,jdbcType=BIT}, #{deletedtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.lvpeng.model.TumorsFollowUpInfo" >
+    insert into tumors_follow_up_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="detailid != null" >
+        detailID,
+      </if>
+      <if test="followupid != null" >
+        followUpID,
+      </if>
+      <if test="isresidenceverification != null" >
+        isResidenceVerification,
+      </if>
+      <if test="unverifiedresidencereasons != null" >
+        unverifiedResidenceReasons,
+      </if>
+      <if test="passivesmokingplaces != null" >
+        passiveSmokingPlaces,
+      </if>
+      <if test="smokingage != null" >
+        smokingAge,
+      </if>
+      <if test="quitsmokingage != null" >
+        quitSmokingAge,
+      </if>
+      <if test="smokingnum != null" >
+        smokingNum,
+      </if>
+      <if test="tumorsfamilyhistory != null" >
+        tumorsFamilyHistory,
+      </if>
+      <if test="relationshipwithpatient != null" >
+        relationshipWithPatient,
+      </if>
+      <if test="tumorfamilyhistorytype != null" >
+        tumorFamilyHistoryType,
+      </if>
+      <if test="firstsymptomsdate != null" >
+        firstSymptomsDate,
+      </if>
+      <if test="firstvisitdate != null" >
+        firstVisitDate,
+      </if>
+      <if test="tumortreatmenthospital != null" >
+        tumorTreatmentHospital,
+      </if>
+      <if test="firstoperationhospital != null" >
+        firstOperationHospital,
+      </if>
+      <if test="firstoperationdate != null" >
+        firstOperationDate,
+      </if>
+      <if test="firstoperationtype != null" >
+        firstOperationType,
+      </if>
+      <if test="reportcardno != null" >
+        reportCardNo,
+      </if>
+      <if test="nextunverifiedresidencereasons != null" >
+        nextUnverifiedResidenceReasons,
+      </if>
+      <if test="ismetastasis != null" >
+        isMetastasis,
+      </if>
+      <if test="metastasissite != null" >
+        metastasisSite,
+      </if>
+      <if test="isrecurrence != null" >
+        isRecurrence,
+      </if>
+      <if test="recurrencenumber != null" >
+        recurrenceNumber,
+      </if>
+      <if test="recurrencedate != null" >
+        recurrenceDate,
+      </if>
+      <if test="therapeuticmodalities != null" >
+        therapeuticModalities,
+      </if>
+      <if test="patientstatus != null" >
+        patientStatus,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="issmoking != null" >
+        isSmoking,
+      </if>
+      <if test="guidancecontents != null" >
+        guidanceContents,
+      </if>
+      <if test="karnofsky != null" >
+        karnofsky,
+      </if>
+      <if test="referralagency != null" >
+        referralAgency,
+      </if>
+      <if test="referralcauses != null" >
+        referralCauses,
+      </if>
+      <if test="turnover != null" >
+        turnover,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="lastmodifieruser != null" >
+        lastModifierUser,
+      </if>
+      <if test="lastmodificationtime != null" >
+        lastModificationTime,
+      </if>
+      <if test="isdeleted != null" >
+        isDeleted,
+      </if>
+      <if test="deletedtime != null" >
+        deletedTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="detailid != null" >
+        #{detailid,jdbcType=INTEGER},
+      </if>
+      <if test="followupid != null" >
+        #{followupid,jdbcType=INTEGER},
+      </if>
+      <if test="isresidenceverification != null" >
+        #{isresidenceverification,jdbcType=BIT},
+      </if>
+      <if test="unverifiedresidencereasons != null" >
+        #{unverifiedresidencereasons,jdbcType=VARCHAR},
+      </if>
+      <if test="passivesmokingplaces != null" >
+        #{passivesmokingplaces,jdbcType=VARCHAR},
+      </if>
+      <if test="smokingage != null" >
+        #{smokingage,jdbcType=SMALLINT},
+      </if>
+      <if test="quitsmokingage != null" >
+        #{quitsmokingage,jdbcType=SMALLINT},
+      </if>
+      <if test="smokingnum != null" >
+        #{smokingnum,jdbcType=SMALLINT},
+      </if>
+      <if test="tumorsfamilyhistory != null" >
+        #{tumorsfamilyhistory,jdbcType=VARCHAR},
+      </if>
+      <if test="relationshipwithpatient != null" >
+        #{relationshipwithpatient,jdbcType=VARCHAR},
+      </if>
+      <if test="tumorfamilyhistorytype != null" >
+        #{tumorfamilyhistorytype,jdbcType=VARCHAR},
+      </if>
+      <if test="firstsymptomsdate != null" >
+        #{firstsymptomsdate,jdbcType=DATE},
+      </if>
+      <if test="firstvisitdate != null" >
+        #{firstvisitdate,jdbcType=DATE},
+      </if>
+      <if test="tumortreatmenthospital != null" >
+        #{tumortreatmenthospital,jdbcType=VARCHAR},
+      </if>
+      <if test="firstoperationhospital != null" >
+        #{firstoperationhospital,jdbcType=VARCHAR},
+      </if>
+      <if test="firstoperationdate != null" >
+        #{firstoperationdate,jdbcType=DATE},
+      </if>
+      <if test="firstoperationtype != null" >
+        #{firstoperationtype,jdbcType=VARCHAR},
+      </if>
+      <if test="reportcardno != null" >
+        #{reportcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="nextunverifiedresidencereasons != null" >
+        #{nextunverifiedresidencereasons,jdbcType=VARCHAR},
+      </if>
+      <if test="ismetastasis != null" >
+        #{ismetastasis,jdbcType=BIT},
+      </if>
+      <if test="metastasissite != null" >
+        #{metastasissite,jdbcType=VARCHAR},
+      </if>
+      <if test="isrecurrence != null" >
+        #{isrecurrence,jdbcType=BIT},
+      </if>
+      <if test="recurrencenumber != null" >
+        #{recurrencenumber,jdbcType=SMALLINT},
+      </if>
+      <if test="recurrencedate != null" >
+        #{recurrencedate,jdbcType=DATE},
+      </if>
+      <if test="therapeuticmodalities != null" >
+        #{therapeuticmodalities,jdbcType=VARCHAR},
+      </if>
+      <if test="patientstatus != null" >
+        #{patientstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="issmoking != null" >
+        #{issmoking,jdbcType=BIT},
+      </if>
+      <if test="guidancecontents != null" >
+        #{guidancecontents,jdbcType=VARCHAR},
+      </if>
+      <if test="karnofsky != null" >
+        #{karnofsky,jdbcType=INTEGER},
+      </if>
+      <if test="referralagency != null" >
+        #{referralagency,jdbcType=VARCHAR},
+      </if>
+      <if test="referralcauses != null" >
+        #{referralcauses,jdbcType=VARCHAR},
+      </if>
+      <if test="turnover != null" >
+        #{turnover,jdbcType=SMALLINT},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastmodifieruser != null" >
+        #{lastmodifieruser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastmodificationtime != null" >
+        #{lastmodificationtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdeleted != null" >
+        #{isdeleted,jdbcType=BIT},
+      </if>
+      <if test="deletedtime != null" >
+        #{deletedtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.lvpeng.model.TumorsFollowUpInfoExample" resultType="java.lang.Integer" >
+    select count(*) from tumors_follow_up_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tumors_follow_up_info
+    <set >
+      <if test="record.detailid != null" >
+        detailID = #{record.detailid,jdbcType=INTEGER},
+      </if>
+      <if test="record.followupid != null" >
+        followUpID = #{record.followupid,jdbcType=INTEGER},
+      </if>
+      <if test="record.isresidenceverification != null" >
+        isResidenceVerification = #{record.isresidenceverification,jdbcType=BIT},
+      </if>
+      <if test="record.unverifiedresidencereasons != null" >
+        unverifiedResidenceReasons = #{record.unverifiedresidencereasons,jdbcType=VARCHAR},
+      </if>
+      <if test="record.passivesmokingplaces != null" >
+        passiveSmokingPlaces = #{record.passivesmokingplaces,jdbcType=VARCHAR},
+      </if>
+      <if test="record.smokingage != null" >
+        smokingAge = #{record.smokingage,jdbcType=SMALLINT},
+      </if>
+      <if test="record.quitsmokingage != null" >
+        quitSmokingAge = #{record.quitsmokingage,jdbcType=SMALLINT},
+      </if>
+      <if test="record.smokingnum != null" >
+        smokingNum = #{record.smokingnum,jdbcType=SMALLINT},
+      </if>
+      <if test="record.tumorsfamilyhistory != null" >
+        tumorsFamilyHistory = #{record.tumorsfamilyhistory,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relationshipwithpatient != null" >
+        relationshipWithPatient = #{record.relationshipwithpatient,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tumorfamilyhistorytype != null" >
+        tumorFamilyHistoryType = #{record.tumorfamilyhistorytype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.firstsymptomsdate != null" >
+        firstSymptomsDate = #{record.firstsymptomsdate,jdbcType=DATE},
+      </if>
+      <if test="record.firstvisitdate != null" >
+        firstVisitDate = #{record.firstvisitdate,jdbcType=DATE},
+      </if>
+      <if test="record.tumortreatmenthospital != null" >
+        tumorTreatmentHospital = #{record.tumortreatmenthospital,jdbcType=VARCHAR},
+      </if>
+      <if test="record.firstoperationhospital != null" >
+        firstOperationHospital = #{record.firstoperationhospital,jdbcType=VARCHAR},
+      </if>
+      <if test="record.firstoperationdate != null" >
+        firstOperationDate = #{record.firstoperationdate,jdbcType=DATE},
+      </if>
+      <if test="record.firstoperationtype != null" >
+        firstOperationType = #{record.firstoperationtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reportcardno != null" >
+        reportCardNo = #{record.reportcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nextunverifiedresidencereasons != null" >
+        nextUnverifiedResidenceReasons = #{record.nextunverifiedresidencereasons,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ismetastasis != null" >
+        isMetastasis = #{record.ismetastasis,jdbcType=BIT},
+      </if>
+      <if test="record.metastasissite != null" >
+        metastasisSite = #{record.metastasissite,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isrecurrence != null" >
+        isRecurrence = #{record.isrecurrence,jdbcType=BIT},
+      </if>
+      <if test="record.recurrencenumber != null" >
+        recurrenceNumber = #{record.recurrencenumber,jdbcType=SMALLINT},
+      </if>
+      <if test="record.recurrencedate != null" >
+        recurrenceDate = #{record.recurrencedate,jdbcType=DATE},
+      </if>
+      <if test="record.therapeuticmodalities != null" >
+        therapeuticModalities = #{record.therapeuticmodalities,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patientstatus != null" >
+        patientStatus = #{record.patientstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weight != null" >
+        weight = #{record.weight,jdbcType=DECIMAL},
+      </if>
+      <if test="record.issmoking != null" >
+        isSmoking = #{record.issmoking,jdbcType=BIT},
+      </if>
+      <if test="record.guidancecontents != null" >
+        guidanceContents = #{record.guidancecontents,jdbcType=VARCHAR},
+      </if>
+      <if test="record.karnofsky != null" >
+        karnofsky = #{record.karnofsky,jdbcType=INTEGER},
+      </if>
+      <if test="record.referralagency != null" >
+        referralAgency = #{record.referralagency,jdbcType=VARCHAR},
+      </if>
+      <if test="record.referralcauses != null" >
+        referralCauses = #{record.referralcauses,jdbcType=VARCHAR},
+      </if>
+      <if test="record.turnover != null" >
+        turnover = #{record.turnover,jdbcType=SMALLINT},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastmodifieruser != null" >
+        lastModifierUser = #{record.lastmodifieruser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastmodificationtime != null" >
+        lastModificationTime = #{record.lastmodificationtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isdeleted != null" >
+        isDeleted = #{record.isdeleted,jdbcType=BIT},
+      </if>
+      <if test="record.deletedtime != null" >
+        deletedTime = #{record.deletedtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tumors_follow_up_info
+    set detailID = #{record.detailid,jdbcType=INTEGER},
+      followUpID = #{record.followupid,jdbcType=INTEGER},
+      isResidenceVerification = #{record.isresidenceverification,jdbcType=BIT},
+      unverifiedResidenceReasons = #{record.unverifiedresidencereasons,jdbcType=VARCHAR},
+      passiveSmokingPlaces = #{record.passivesmokingplaces,jdbcType=VARCHAR},
+      smokingAge = #{record.smokingage,jdbcType=SMALLINT},
+      quitSmokingAge = #{record.quitsmokingage,jdbcType=SMALLINT},
+      smokingNum = #{record.smokingnum,jdbcType=SMALLINT},
+      tumorsFamilyHistory = #{record.tumorsfamilyhistory,jdbcType=VARCHAR},
+      relationshipWithPatient = #{record.relationshipwithpatient,jdbcType=VARCHAR},
+      tumorFamilyHistoryType = #{record.tumorfamilyhistorytype,jdbcType=VARCHAR},
+      firstSymptomsDate = #{record.firstsymptomsdate,jdbcType=DATE},
+      firstVisitDate = #{record.firstvisitdate,jdbcType=DATE},
+      tumorTreatmentHospital = #{record.tumortreatmenthospital,jdbcType=VARCHAR},
+      firstOperationHospital = #{record.firstoperationhospital,jdbcType=VARCHAR},
+      firstOperationDate = #{record.firstoperationdate,jdbcType=DATE},
+      firstOperationType = #{record.firstoperationtype,jdbcType=VARCHAR},
+      reportCardNo = #{record.reportcardno,jdbcType=VARCHAR},
+      nextUnverifiedResidenceReasons = #{record.nextunverifiedresidencereasons,jdbcType=VARCHAR},
+      isMetastasis = #{record.ismetastasis,jdbcType=BIT},
+      metastasisSite = #{record.metastasissite,jdbcType=VARCHAR},
+      isRecurrence = #{record.isrecurrence,jdbcType=BIT},
+      recurrenceNumber = #{record.recurrencenumber,jdbcType=SMALLINT},
+      recurrenceDate = #{record.recurrencedate,jdbcType=DATE},
+      therapeuticModalities = #{record.therapeuticmodalities,jdbcType=VARCHAR},
+      patientStatus = #{record.patientstatus,jdbcType=VARCHAR},
+      weight = #{record.weight,jdbcType=DECIMAL},
+      isSmoking = #{record.issmoking,jdbcType=BIT},
+      guidanceContents = #{record.guidancecontents,jdbcType=VARCHAR},
+      karnofsky = #{record.karnofsky,jdbcType=INTEGER},
+      referralAgency = #{record.referralagency,jdbcType=VARCHAR},
+      referralCauses = #{record.referralcauses,jdbcType=VARCHAR},
+      turnover = #{record.turnover,jdbcType=SMALLINT},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      lastModifierUser = #{record.lastmodifieruser,jdbcType=VARCHAR},
+      lastModificationTime = #{record.lastmodificationtime,jdbcType=TIMESTAMP},
+      isDeleted = #{record.isdeleted,jdbcType=BIT},
+      deletedTime = #{record.deletedtime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.lvpeng.model.TumorsFollowUpInfo" >
+    update tumors_follow_up_info
+    <set >
+      <if test="followupid != null" >
+        followUpID = #{followupid,jdbcType=INTEGER},
+      </if>
+      <if test="isresidenceverification != null" >
+        isResidenceVerification = #{isresidenceverification,jdbcType=BIT},
+      </if>
+      <if test="unverifiedresidencereasons != null" >
+        unverifiedResidenceReasons = #{unverifiedresidencereasons,jdbcType=VARCHAR},
+      </if>
+      <if test="passivesmokingplaces != null" >
+        passiveSmokingPlaces = #{passivesmokingplaces,jdbcType=VARCHAR},
+      </if>
+      <if test="smokingage != null" >
+        smokingAge = #{smokingage,jdbcType=SMALLINT},
+      </if>
+      <if test="quitsmokingage != null" >
+        quitSmokingAge = #{quitsmokingage,jdbcType=SMALLINT},
+      </if>
+      <if test="smokingnum != null" >
+        smokingNum = #{smokingnum,jdbcType=SMALLINT},
+      </if>
+      <if test="tumorsfamilyhistory != null" >
+        tumorsFamilyHistory = #{tumorsfamilyhistory,jdbcType=VARCHAR},
+      </if>
+      <if test="relationshipwithpatient != null" >
+        relationshipWithPatient = #{relationshipwithpatient,jdbcType=VARCHAR},
+      </if>
+      <if test="tumorfamilyhistorytype != null" >
+        tumorFamilyHistoryType = #{tumorfamilyhistorytype,jdbcType=VARCHAR},
+      </if>
+      <if test="firstsymptomsdate != null" >
+        firstSymptomsDate = #{firstsymptomsdate,jdbcType=DATE},
+      </if>
+      <if test="firstvisitdate != null" >
+        firstVisitDate = #{firstvisitdate,jdbcType=DATE},
+      </if>
+      <if test="tumortreatmenthospital != null" >
+        tumorTreatmentHospital = #{tumortreatmenthospital,jdbcType=VARCHAR},
+      </if>
+      <if test="firstoperationhospital != null" >
+        firstOperationHospital = #{firstoperationhospital,jdbcType=VARCHAR},
+      </if>
+      <if test="firstoperationdate != null" >
+        firstOperationDate = #{firstoperationdate,jdbcType=DATE},
+      </if>
+      <if test="firstoperationtype != null" >
+        firstOperationType = #{firstoperationtype,jdbcType=VARCHAR},
+      </if>
+      <if test="reportcardno != null" >
+        reportCardNo = #{reportcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="nextunverifiedresidencereasons != null" >
+        nextUnverifiedResidenceReasons = #{nextunverifiedresidencereasons,jdbcType=VARCHAR},
+      </if>
+      <if test="ismetastasis != null" >
+        isMetastasis = #{ismetastasis,jdbcType=BIT},
+      </if>
+      <if test="metastasissite != null" >
+        metastasisSite = #{metastasissite,jdbcType=VARCHAR},
+      </if>
+      <if test="isrecurrence != null" >
+        isRecurrence = #{isrecurrence,jdbcType=BIT},
+      </if>
+      <if test="recurrencenumber != null" >
+        recurrenceNumber = #{recurrencenumber,jdbcType=SMALLINT},
+      </if>
+      <if test="recurrencedate != null" >
+        recurrenceDate = #{recurrencedate,jdbcType=DATE},
+      </if>
+      <if test="therapeuticmodalities != null" >
+        therapeuticModalities = #{therapeuticmodalities,jdbcType=VARCHAR},
+      </if>
+      <if test="patientstatus != null" >
+        patientStatus = #{patientstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="issmoking != null" >
+        isSmoking = #{issmoking,jdbcType=BIT},
+      </if>
+      <if test="guidancecontents != null" >
+        guidanceContents = #{guidancecontents,jdbcType=VARCHAR},
+      </if>
+      <if test="karnofsky != null" >
+        karnofsky = #{karnofsky,jdbcType=INTEGER},
+      </if>
+      <if test="referralagency != null" >
+        referralAgency = #{referralagency,jdbcType=VARCHAR},
+      </if>
+      <if test="referralcauses != null" >
+        referralCauses = #{referralcauses,jdbcType=VARCHAR},
+      </if>
+      <if test="turnover != null" >
+        turnover = #{turnover,jdbcType=SMALLINT},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastmodifieruser != null" >
+        lastModifierUser = #{lastmodifieruser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastmodificationtime != null" >
+        lastModificationTime = #{lastmodificationtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdeleted != null" >
+        isDeleted = #{isdeleted,jdbcType=BIT},
+      </if>
+      <if test="deletedtime != null" >
+        deletedTime = #{deletedtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where detailID = #{detailid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.lvpeng.model.TumorsFollowUpInfo" >
+    update tumors_follow_up_info
+    set followUpID = #{followupid,jdbcType=INTEGER},
+      isResidenceVerification = #{isresidenceverification,jdbcType=BIT},
+      unverifiedResidenceReasons = #{unverifiedresidencereasons,jdbcType=VARCHAR},
+      passiveSmokingPlaces = #{passivesmokingplaces,jdbcType=VARCHAR},
+      smokingAge = #{smokingage,jdbcType=SMALLINT},
+      quitSmokingAge = #{quitsmokingage,jdbcType=SMALLINT},
+      smokingNum = #{smokingnum,jdbcType=SMALLINT},
+      tumorsFamilyHistory = #{tumorsfamilyhistory,jdbcType=VARCHAR},
+      relationshipWithPatient = #{relationshipwithpatient,jdbcType=VARCHAR},
+      tumorFamilyHistoryType = #{tumorfamilyhistorytype,jdbcType=VARCHAR},
+      firstSymptomsDate = #{firstsymptomsdate,jdbcType=DATE},
+      firstVisitDate = #{firstvisitdate,jdbcType=DATE},
+      tumorTreatmentHospital = #{tumortreatmenthospital,jdbcType=VARCHAR},
+      firstOperationHospital = #{firstoperationhospital,jdbcType=VARCHAR},
+      firstOperationDate = #{firstoperationdate,jdbcType=DATE},
+      firstOperationType = #{firstoperationtype,jdbcType=VARCHAR},
+      reportCardNo = #{reportcardno,jdbcType=VARCHAR},
+      nextUnverifiedResidenceReasons = #{nextunverifiedresidencereasons,jdbcType=VARCHAR},
+      isMetastasis = #{ismetastasis,jdbcType=BIT},
+      metastasisSite = #{metastasissite,jdbcType=VARCHAR},
+      isRecurrence = #{isrecurrence,jdbcType=BIT},
+      recurrenceNumber = #{recurrencenumber,jdbcType=SMALLINT},
+      recurrenceDate = #{recurrencedate,jdbcType=DATE},
+      therapeuticModalities = #{therapeuticmodalities,jdbcType=VARCHAR},
+      patientStatus = #{patientstatus,jdbcType=VARCHAR},
+      weight = #{weight,jdbcType=DECIMAL},
+      isSmoking = #{issmoking,jdbcType=BIT},
+      guidanceContents = #{guidancecontents,jdbcType=VARCHAR},
+      karnofsky = #{karnofsky,jdbcType=INTEGER},
+      referralAgency = #{referralagency,jdbcType=VARCHAR},
+      referralCauses = #{referralcauses,jdbcType=VARCHAR},
+      turnover = #{turnover,jdbcType=SMALLINT},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      lastModifierUser = #{lastmodifieruser,jdbcType=VARCHAR},
+      lastModificationTime = #{lastmodificationtime,jdbcType=TIMESTAMP},
+      isDeleted = #{isdeleted,jdbcType=BIT},
+      deletedTime = #{deletedtime,jdbcType=TIMESTAMP}
+    where detailID = #{detailid,jdbcType=INTEGER}
+  </update>
+</mapper>

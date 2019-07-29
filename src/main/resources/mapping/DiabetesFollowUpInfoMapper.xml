@@ -1,0 +1,964 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.lvpeng.dao.DiabetesFollowUpInfoMapper" >
+  <resultMap id="BaseResultMap" type="cn.lvpeng.model.DiabetesFollowUpInfo" >
+    <id column="detailID" property="detailid" jdbcType="INTEGER" />
+    <result column="followUpID" property="followupid" jdbcType="INTEGER" />
+    <result column="regularActivities" property="regularactivities" jdbcType="VARCHAR" />
+    <result column="activityFrequency" property="activityfrequency" jdbcType="VARCHAR" />
+    <result column="eachDuration" property="eachduration" jdbcType="VARCHAR" />
+    <result column="dietaryStatus" property="dietarystatus" jdbcType="VARCHAR" />
+    <result column="diabetesSymptoms" property="diabetessymptoms" jdbcType="SMALLINT" />
+    <result column="diabetesSymptomsSupplement" property="diabetessymptomssupplement" jdbcType="VARCHAR" />
+    <result column="hypoglycemicReaction" property="hypoglycemicreaction" jdbcType="SMALLINT" />
+    <result column="systolicPressure" property="systolicpressure" jdbcType="SMALLINT" />
+    <result column="diastolicPressure" property="diastolicpressure" jdbcType="SMALLINT" />
+    <result column="height" property="height" jdbcType="DECIMAL" />
+    <result column="weight" property="weight" jdbcType="DECIMAL" />
+    <result column="targetWeight" property="targetweight" jdbcType="DECIMAL" />
+    <result column="constitutionalIndex" property="constitutionalindex" jdbcType="DECIMAL" />
+    <result column="targetConstitutionalIndex" property="targetconstitutionalindex" jdbcType="DECIMAL" />
+    <result column="footDorsalArtery" property="footdorsalartery" jdbcType="SMALLINT" />
+    <result column="otherSigns" property="othersigns" jdbcType="VARCHAR" />
+    <result column="dailySmoking" property="dailysmoking" jdbcType="SMALLINT" />
+    <result column="targetDailySmoking" property="targetdailysmoking" jdbcType="SMALLINT" />
+    <result column="dailyAlcohol" property="dailyalcohol" jdbcType="SMALLINT" />
+    <result column="targetDailyAlcohol" property="targetdailyalcohol" jdbcType="SMALLINT" />
+    <result column="weeklyExercisesNumber" property="weeklyexercisesnumber" jdbcType="SMALLINT" />
+    <result column="targetWeeklyExercisesNumber" property="targetweeklyexercisesnumber" jdbcType="SMALLINT" />
+    <result column="exerciseDuration" property="exerciseduration" jdbcType="SMALLINT" />
+    <result column="targetExerciseDuration" property="targetexerciseduration" jdbcType="SMALLINT" />
+    <result column="saltUptake" property="saltuptake" jdbcType="SMALLINT" />
+    <result column="targetSaltUptake" property="targetsaltuptake" jdbcType="SMALLINT" />
+    <result column="psychologicalAdjustment" property="psychologicaladjustment" jdbcType="SMALLINT" />
+    <result column="complianceBehavior" property="compliancebehavior" jdbcType="SMALLINT" />
+    <result column="fastingBloodSugar" property="fastingbloodsugar" jdbcType="DECIMAL" />
+    <result column="glycosylatedHemoglobin" property="glycosylatedhemoglobin" jdbcType="DECIMAL" />
+    <result column="inspectionDate" property="inspectiondate" jdbcType="TIMESTAMP" />
+    <result column="supplementaryExamination" property="supplementaryexamination" jdbcType="DECIMAL" />
+    <result column="medicationCompliance" property="medicationcompliance" jdbcType="SMALLINT" />
+    <result column="adverseDrugReactions" property="adversedrugreactions" jdbcType="SMALLINT" />
+    <result column="diabetesMedicinesInfo" property="diabetesmedicinesinfo" jdbcType="VARCHAR" />
+    <result column="drugName" property="drugname" jdbcType="VARCHAR" />
+    <result column="eachDose" property="eachdose" jdbcType="DECIMAL" />
+    <result column="doseUnit" property="doseunit" jdbcType="VARCHAR" />
+    <result column="insulinPerDose" property="insulinperdose" jdbcType="DECIMAL" />
+    <result column="insulinDoseUnit" property="insulindoseunit" jdbcType="VARCHAR" />
+    <result column="diabetesFollowUpType" property="diabetesfollowuptype" jdbcType="SMALLINT" />
+    <result column="diabetesFollowUpTypeSupplement" property="diabetesfollowuptypesupplement" jdbcType="SMALLINT" />
+    <result column="referralAgency" property="referralagency" jdbcType="VARCHAR" />
+    <result column="referralCauses" property="referralcauses" jdbcType="VARCHAR" />
+    <result column="turnover" property="turnover" jdbcType="SMALLINT" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="lastModifierUser" property="lastmodifieruser" jdbcType="VARCHAR" />
+    <result column="lastModificationTime" property="lastmodificationtime" jdbcType="TIMESTAMP" />
+    <result column="isDeleted" property="isdeleted" jdbcType="BIT" />
+    <result column="deletedTime" property="deletedtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    detailID, followUpID, regularActivities, activityFrequency, eachDuration, dietaryStatus, 
+    diabetesSymptoms, diabetesSymptomsSupplement, hypoglycemicReaction, systolicPressure, 
+    diastolicPressure, height, weight, targetWeight, constitutionalIndex, targetConstitutionalIndex, 
+    footDorsalArtery, otherSigns, dailySmoking, targetDailySmoking, dailyAlcohol, targetDailyAlcohol, 
+    weeklyExercisesNumber, targetWeeklyExercisesNumber, exerciseDuration, targetExerciseDuration, 
+    saltUptake, targetSaltUptake, psychologicalAdjustment, complianceBehavior, fastingBloodSugar, 
+    glycosylatedHemoglobin, inspectionDate, supplementaryExamination, medicationCompliance, 
+    adverseDrugReactions, diabetesMedicinesInfo, drugName, eachDose, doseUnit, insulinPerDose, 
+    insulinDoseUnit, diabetesFollowUpType, diabetesFollowUpTypeSupplement, referralAgency, 
+    referralCauses, turnover, createTime, lastModifierUser, lastModificationTime, isDeleted, 
+    deletedTime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.lvpeng.model.DiabetesFollowUpInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from diabetes_follow_up_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from diabetes_follow_up_info
+    where detailID = #{detailid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from diabetes_follow_up_info
+    where detailID = #{detailid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.lvpeng.model.DiabetesFollowUpInfoExample" >
+    delete from diabetes_follow_up_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.lvpeng.model.DiabetesFollowUpInfo" >
+    insert into diabetes_follow_up_info (detailID, followUpID, regularActivities, 
+      activityFrequency, eachDuration, dietaryStatus, 
+      diabetesSymptoms, diabetesSymptomsSupplement, 
+      hypoglycemicReaction, systolicPressure, 
+      diastolicPressure, height, weight, 
+      targetWeight, constitutionalIndex, targetConstitutionalIndex, 
+      footDorsalArtery, otherSigns, dailySmoking, 
+      targetDailySmoking, dailyAlcohol, targetDailyAlcohol, 
+      weeklyExercisesNumber, targetWeeklyExercisesNumber, 
+      exerciseDuration, targetExerciseDuration, 
+      saltUptake, targetSaltUptake, psychologicalAdjustment, 
+      complianceBehavior, fastingBloodSugar, 
+      glycosylatedHemoglobin, inspectionDate, 
+      supplementaryExamination, medicationCompliance, 
+      adverseDrugReactions, diabetesMedicinesInfo, 
+      drugName, eachDose, doseUnit, 
+      insulinPerDose, insulinDoseUnit, diabetesFollowUpType, 
+      diabetesFollowUpTypeSupplement, referralAgency, 
+      referralCauses, turnover, createTime, 
+      lastModifierUser, lastModificationTime, 
+      isDeleted, deletedTime)
+    values (#{detailid,jdbcType=INTEGER}, #{followupid,jdbcType=INTEGER}, #{regularactivities,jdbcType=VARCHAR}, 
+      #{activityfrequency,jdbcType=VARCHAR}, #{eachduration,jdbcType=VARCHAR}, #{dietarystatus,jdbcType=VARCHAR}, 
+      #{diabetessymptoms,jdbcType=SMALLINT}, #{diabetessymptomssupplement,jdbcType=VARCHAR}, 
+      #{hypoglycemicreaction,jdbcType=SMALLINT}, #{systolicpressure,jdbcType=SMALLINT}, 
+      #{diastolicpressure,jdbcType=SMALLINT}, #{height,jdbcType=DECIMAL}, #{weight,jdbcType=DECIMAL}, 
+      #{targetweight,jdbcType=DECIMAL}, #{constitutionalindex,jdbcType=DECIMAL}, #{targetconstitutionalindex,jdbcType=DECIMAL}, 
+      #{footdorsalartery,jdbcType=SMALLINT}, #{othersigns,jdbcType=VARCHAR}, #{dailysmoking,jdbcType=SMALLINT}, 
+      #{targetdailysmoking,jdbcType=SMALLINT}, #{dailyalcohol,jdbcType=SMALLINT}, #{targetdailyalcohol,jdbcType=SMALLINT}, 
+      #{weeklyexercisesnumber,jdbcType=SMALLINT}, #{targetweeklyexercisesnumber,jdbcType=SMALLINT}, 
+      #{exerciseduration,jdbcType=SMALLINT}, #{targetexerciseduration,jdbcType=SMALLINT}, 
+      #{saltuptake,jdbcType=SMALLINT}, #{targetsaltuptake,jdbcType=SMALLINT}, #{psychologicaladjustment,jdbcType=SMALLINT}, 
+      #{compliancebehavior,jdbcType=SMALLINT}, #{fastingbloodsugar,jdbcType=DECIMAL}, 
+      #{glycosylatedhemoglobin,jdbcType=DECIMAL}, #{inspectiondate,jdbcType=TIMESTAMP}, 
+      #{supplementaryexamination,jdbcType=DECIMAL}, #{medicationcompliance,jdbcType=SMALLINT}, 
+      #{adversedrugreactions,jdbcType=SMALLINT}, #{diabetesmedicinesinfo,jdbcType=VARCHAR}, 
+      #{drugname,jdbcType=VARCHAR}, #{eachdose,jdbcType=DECIMAL}, #{doseunit,jdbcType=VARCHAR}, 
+      #{insulinperdose,jdbcType=DECIMAL}, #{insulindoseunit,jdbcType=VARCHAR}, #{diabetesfollowuptype,jdbcType=SMALLINT}, 
+      #{diabetesfollowuptypesupplement,jdbcType=SMALLINT}, #{referralagency,jdbcType=VARCHAR}, 
+      #{referralcauses,jdbcType=VARCHAR}, #{turnover,jdbcType=SMALLINT}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{lastmodifieruser,jdbcType=VARCHAR}, #{lastmodificationtime,jdbcType=TIMESTAMP}, 
+      #{isdeleted,jdbcType=BIT}, #{deletedtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.lvpeng.model.DiabetesFollowUpInfo" >
+    insert into diabetes_follow_up_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="detailid != null" >
+        detailID,
+      </if>
+      <if test="followupid != null" >
+        followUpID,
+      </if>
+      <if test="regularactivities != null" >
+        regularActivities,
+      </if>
+      <if test="activityfrequency != null" >
+        activityFrequency,
+      </if>
+      <if test="eachduration != null" >
+        eachDuration,
+      </if>
+      <if test="dietarystatus != null" >
+        dietaryStatus,
+      </if>
+      <if test="diabetessymptoms != null" >
+        diabetesSymptoms,
+      </if>
+      <if test="diabetessymptomssupplement != null" >
+        diabetesSymptomsSupplement,
+      </if>
+      <if test="hypoglycemicreaction != null" >
+        hypoglycemicReaction,
+      </if>
+      <if test="systolicpressure != null" >
+        systolicPressure,
+      </if>
+      <if test="diastolicpressure != null" >
+        diastolicPressure,
+      </if>
+      <if test="height != null" >
+        height,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="targetweight != null" >
+        targetWeight,
+      </if>
+      <if test="constitutionalindex != null" >
+        constitutionalIndex,
+      </if>
+      <if test="targetconstitutionalindex != null" >
+        targetConstitutionalIndex,
+      </if>
+      <if test="footdorsalartery != null" >
+        footDorsalArtery,
+      </if>
+      <if test="othersigns != null" >
+        otherSigns,
+      </if>
+      <if test="dailysmoking != null" >
+        dailySmoking,
+      </if>
+      <if test="targetdailysmoking != null" >
+        targetDailySmoking,
+      </if>
+      <if test="dailyalcohol != null" >
+        dailyAlcohol,
+      </if>
+      <if test="targetdailyalcohol != null" >
+        targetDailyAlcohol,
+      </if>
+      <if test="weeklyexercisesnumber != null" >
+        weeklyExercisesNumber,
+      </if>
+      <if test="targetweeklyexercisesnumber != null" >
+        targetWeeklyExercisesNumber,
+      </if>
+      <if test="exerciseduration != null" >
+        exerciseDuration,
+      </if>
+      <if test="targetexerciseduration != null" >
+        targetExerciseDuration,
+      </if>
+      <if test="saltuptake != null" >
+        saltUptake,
+      </if>
+      <if test="targetsaltuptake != null" >
+        targetSaltUptake,
+      </if>
+      <if test="psychologicaladjustment != null" >
+        psychologicalAdjustment,
+      </if>
+      <if test="compliancebehavior != null" >
+        complianceBehavior,
+      </if>
+      <if test="fastingbloodsugar != null" >
+        fastingBloodSugar,
+      </if>
+      <if test="glycosylatedhemoglobin != null" >
+        glycosylatedHemoglobin,
+      </if>
+      <if test="inspectiondate != null" >
+        inspectionDate,
+      </if>
+      <if test="supplementaryexamination != null" >
+        supplementaryExamination,
+      </if>
+      <if test="medicationcompliance != null" >
+        medicationCompliance,
+      </if>
+      <if test="adversedrugreactions != null" >
+        adverseDrugReactions,
+      </if>
+      <if test="diabetesmedicinesinfo != null" >
+        diabetesMedicinesInfo,
+      </if>
+      <if test="drugname != null" >
+        drugName,
+      </if>
+      <if test="eachdose != null" >
+        eachDose,
+      </if>
+      <if test="doseunit != null" >
+        doseUnit,
+      </if>
+      <if test="insulinperdose != null" >
+        insulinPerDose,
+      </if>
+      <if test="insulindoseunit != null" >
+        insulinDoseUnit,
+      </if>
+      <if test="diabetesfollowuptype != null" >
+        diabetesFollowUpType,
+      </if>
+      <if test="diabetesfollowuptypesupplement != null" >
+        diabetesFollowUpTypeSupplement,
+      </if>
+      <if test="referralagency != null" >
+        referralAgency,
+      </if>
+      <if test="referralcauses != null" >
+        referralCauses,
+      </if>
+      <if test="turnover != null" >
+        turnover,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="lastmodifieruser != null" >
+        lastModifierUser,
+      </if>
+      <if test="lastmodificationtime != null" >
+        lastModificationTime,
+      </if>
+      <if test="isdeleted != null" >
+        isDeleted,
+      </if>
+      <if test="deletedtime != null" >
+        deletedTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="detailid != null" >
+        #{detailid,jdbcType=INTEGER},
+      </if>
+      <if test="followupid != null" >
+        #{followupid,jdbcType=INTEGER},
+      </if>
+      <if test="regularactivities != null" >
+        #{regularactivities,jdbcType=VARCHAR},
+      </if>
+      <if test="activityfrequency != null" >
+        #{activityfrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="eachduration != null" >
+        #{eachduration,jdbcType=VARCHAR},
+      </if>
+      <if test="dietarystatus != null" >
+        #{dietarystatus,jdbcType=VARCHAR},
+      </if>
+      <if test="diabetessymptoms != null" >
+        #{diabetessymptoms,jdbcType=SMALLINT},
+      </if>
+      <if test="diabetessymptomssupplement != null" >
+        #{diabetessymptomssupplement,jdbcType=VARCHAR},
+      </if>
+      <if test="hypoglycemicreaction != null" >
+        #{hypoglycemicreaction,jdbcType=SMALLINT},
+      </if>
+      <if test="systolicpressure != null" >
+        #{systolicpressure,jdbcType=SMALLINT},
+      </if>
+      <if test="diastolicpressure != null" >
+        #{diastolicpressure,jdbcType=SMALLINT},
+      </if>
+      <if test="height != null" >
+        #{height,jdbcType=DECIMAL},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="targetweight != null" >
+        #{targetweight,jdbcType=DECIMAL},
+      </if>
+      <if test="constitutionalindex != null" >
+        #{constitutionalindex,jdbcType=DECIMAL},
+      </if>
+      <if test="targetconstitutionalindex != null" >
+        #{targetconstitutionalindex,jdbcType=DECIMAL},
+      </if>
+      <if test="footdorsalartery != null" >
+        #{footdorsalartery,jdbcType=SMALLINT},
+      </if>
+      <if test="othersigns != null" >
+        #{othersigns,jdbcType=VARCHAR},
+      </if>
+      <if test="dailysmoking != null" >
+        #{dailysmoking,jdbcType=SMALLINT},
+      </if>
+      <if test="targetdailysmoking != null" >
+        #{targetdailysmoking,jdbcType=SMALLINT},
+      </if>
+      <if test="dailyalcohol != null" >
+        #{dailyalcohol,jdbcType=SMALLINT},
+      </if>
+      <if test="targetdailyalcohol != null" >
+        #{targetdailyalcohol,jdbcType=SMALLINT},
+      </if>
+      <if test="weeklyexercisesnumber != null" >
+        #{weeklyexercisesnumber,jdbcType=SMALLINT},
+      </if>
+      <if test="targetweeklyexercisesnumber != null" >
+        #{targetweeklyexercisesnumber,jdbcType=SMALLINT},
+      </if>
+      <if test="exerciseduration != null" >
+        #{exerciseduration,jdbcType=SMALLINT},
+      </if>
+      <if test="targetexerciseduration != null" >
+        #{targetexerciseduration,jdbcType=SMALLINT},
+      </if>
+      <if test="saltuptake != null" >
+        #{saltuptake,jdbcType=SMALLINT},
+      </if>
+      <if test="targetsaltuptake != null" >
+        #{targetsaltuptake,jdbcType=SMALLINT},
+      </if>
+      <if test="psychologicaladjustment != null" >
+        #{psychologicaladjustment,jdbcType=SMALLINT},
+      </if>
+      <if test="compliancebehavior != null" >
+        #{compliancebehavior,jdbcType=SMALLINT},
+      </if>
+      <if test="fastingbloodsugar != null" >
+        #{fastingbloodsugar,jdbcType=DECIMAL},
+      </if>
+      <if test="glycosylatedhemoglobin != null" >
+        #{glycosylatedhemoglobin,jdbcType=DECIMAL},
+      </if>
+      <if test="inspectiondate != null" >
+        #{inspectiondate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="supplementaryexamination != null" >
+        #{supplementaryexamination,jdbcType=DECIMAL},
+      </if>
+      <if test="medicationcompliance != null" >
+        #{medicationcompliance,jdbcType=SMALLINT},
+      </if>
+      <if test="adversedrugreactions != null" >
+        #{adversedrugreactions,jdbcType=SMALLINT},
+      </if>
+      <if test="diabetesmedicinesinfo != null" >
+        #{diabetesmedicinesinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="drugname != null" >
+        #{drugname,jdbcType=VARCHAR},
+      </if>
+      <if test="eachdose != null" >
+        #{eachdose,jdbcType=DECIMAL},
+      </if>
+      <if test="doseunit != null" >
+        #{doseunit,jdbcType=VARCHAR},
+      </if>
+      <if test="insulinperdose != null" >
+        #{insulinperdose,jdbcType=DECIMAL},
+      </if>
+      <if test="insulindoseunit != null" >
+        #{insulindoseunit,jdbcType=VARCHAR},
+      </if>
+      <if test="diabetesfollowuptype != null" >
+        #{diabetesfollowuptype,jdbcType=SMALLINT},
+      </if>
+      <if test="diabetesfollowuptypesupplement != null" >
+        #{diabetesfollowuptypesupplement,jdbcType=SMALLINT},
+      </if>
+      <if test="referralagency != null" >
+        #{referralagency,jdbcType=VARCHAR},
+      </if>
+      <if test="referralcauses != null" >
+        #{referralcauses,jdbcType=VARCHAR},
+      </if>
+      <if test="turnover != null" >
+        #{turnover,jdbcType=SMALLINT},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastmodifieruser != null" >
+        #{lastmodifieruser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastmodificationtime != null" >
+        #{lastmodificationtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdeleted != null" >
+        #{isdeleted,jdbcType=BIT},
+      </if>
+      <if test="deletedtime != null" >
+        #{deletedtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.lvpeng.model.DiabetesFollowUpInfoExample" resultType="java.lang.Integer" >
+    select count(*) from diabetes_follow_up_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update diabetes_follow_up_info
+    <set >
+      <if test="record.detailid != null" >
+        detailID = #{record.detailid,jdbcType=INTEGER},
+      </if>
+      <if test="record.followupid != null" >
+        followUpID = #{record.followupid,jdbcType=INTEGER},
+      </if>
+      <if test="record.regularactivities != null" >
+        regularActivities = #{record.regularactivities,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityfrequency != null" >
+        activityFrequency = #{record.activityfrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eachduration != null" >
+        eachDuration = #{record.eachduration,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dietarystatus != null" >
+        dietaryStatus = #{record.dietarystatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diabetessymptoms != null" >
+        diabetesSymptoms = #{record.diabetessymptoms,jdbcType=SMALLINT},
+      </if>
+      <if test="record.diabetessymptomssupplement != null" >
+        diabetesSymptomsSupplement = #{record.diabetessymptomssupplement,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hypoglycemicreaction != null" >
+        hypoglycemicReaction = #{record.hypoglycemicreaction,jdbcType=SMALLINT},
+      </if>
+      <if test="record.systolicpressure != null" >
+        systolicPressure = #{record.systolicpressure,jdbcType=SMALLINT},
+      </if>
+      <if test="record.diastolicpressure != null" >
+        diastolicPressure = #{record.diastolicpressure,jdbcType=SMALLINT},
+      </if>
+      <if test="record.height != null" >
+        height = #{record.height,jdbcType=DECIMAL},
+      </if>
+      <if test="record.weight != null" >
+        weight = #{record.weight,jdbcType=DECIMAL},
+      </if>
+      <if test="record.targetweight != null" >
+        targetWeight = #{record.targetweight,jdbcType=DECIMAL},
+      </if>
+      <if test="record.constitutionalindex != null" >
+        constitutionalIndex = #{record.constitutionalindex,jdbcType=DECIMAL},
+      </if>
+      <if test="record.targetconstitutionalindex != null" >
+        targetConstitutionalIndex = #{record.targetconstitutionalindex,jdbcType=DECIMAL},
+      </if>
+      <if test="record.footdorsalartery != null" >
+        footDorsalArtery = #{record.footdorsalartery,jdbcType=SMALLINT},
+      </if>
+      <if test="record.othersigns != null" >
+        otherSigns = #{record.othersigns,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dailysmoking != null" >
+        dailySmoking = #{record.dailysmoking,jdbcType=SMALLINT},
+      </if>
+      <if test="record.targetdailysmoking != null" >
+        targetDailySmoking = #{record.targetdailysmoking,jdbcType=SMALLINT},
+      </if>
+      <if test="record.dailyalcohol != null" >
+        dailyAlcohol = #{record.dailyalcohol,jdbcType=SMALLINT},
+      </if>
+      <if test="record.targetdailyalcohol != null" >
+        targetDailyAlcohol = #{record.targetdailyalcohol,jdbcType=SMALLINT},
+      </if>
+      <if test="record.weeklyexercisesnumber != null" >
+        weeklyExercisesNumber = #{record.weeklyexercisesnumber,jdbcType=SMALLINT},
+      </if>
+      <if test="record.targetweeklyexercisesnumber != null" >
+        targetWeeklyExercisesNumber = #{record.targetweeklyexercisesnumber,jdbcType=SMALLINT},
+      </if>
+      <if test="record.exerciseduration != null" >
+        exerciseDuration = #{record.exerciseduration,jdbcType=SMALLINT},
+      </if>
+      <if test="record.targetexerciseduration != null" >
+        targetExerciseDuration = #{record.targetexerciseduration,jdbcType=SMALLINT},
+      </if>
+      <if test="record.saltuptake != null" >
+        saltUptake = #{record.saltuptake,jdbcType=SMALLINT},
+      </if>
+      <if test="record.targetsaltuptake != null" >
+        targetSaltUptake = #{record.targetsaltuptake,jdbcType=SMALLINT},
+      </if>
+      <if test="record.psychologicaladjustment != null" >
+        psychologicalAdjustment = #{record.psychologicaladjustment,jdbcType=SMALLINT},
+      </if>
+      <if test="record.compliancebehavior != null" >
+        complianceBehavior = #{record.compliancebehavior,jdbcType=SMALLINT},
+      </if>
+      <if test="record.fastingbloodsugar != null" >
+        fastingBloodSugar = #{record.fastingbloodsugar,jdbcType=DECIMAL},
+      </if>
+      <if test="record.glycosylatedhemoglobin != null" >
+        glycosylatedHemoglobin = #{record.glycosylatedhemoglobin,jdbcType=DECIMAL},
+      </if>
+      <if test="record.inspectiondate != null" >
+        inspectionDate = #{record.inspectiondate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.supplementaryexamination != null" >
+        supplementaryExamination = #{record.supplementaryexamination,jdbcType=DECIMAL},
+      </if>
+      <if test="record.medicationcompliance != null" >
+        medicationCompliance = #{record.medicationcompliance,jdbcType=SMALLINT},
+      </if>
+      <if test="record.adversedrugreactions != null" >
+        adverseDrugReactions = #{record.adversedrugreactions,jdbcType=SMALLINT},
+      </if>
+      <if test="record.diabetesmedicinesinfo != null" >
+        diabetesMedicinesInfo = #{record.diabetesmedicinesinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drugname != null" >
+        drugName = #{record.drugname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eachdose != null" >
+        eachDose = #{record.eachdose,jdbcType=DECIMAL},
+      </if>
+      <if test="record.doseunit != null" >
+        doseUnit = #{record.doseunit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.insulinperdose != null" >
+        insulinPerDose = #{record.insulinperdose,jdbcType=DECIMAL},
+      </if>
+      <if test="record.insulindoseunit != null" >
+        insulinDoseUnit = #{record.insulindoseunit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diabetesfollowuptype != null" >
+        diabetesFollowUpType = #{record.diabetesfollowuptype,jdbcType=SMALLINT},
+      </if>
+      <if test="record.diabetesfollowuptypesupplement != null" >
+        diabetesFollowUpTypeSupplement = #{record.diabetesfollowuptypesupplement,jdbcType=SMALLINT},
+      </if>
+      <if test="record.referralagency != null" >
+        referralAgency = #{record.referralagency,jdbcType=VARCHAR},
+      </if>
+      <if test="record.referralcauses != null" >
+        referralCauses = #{record.referralcauses,jdbcType=VARCHAR},
+      </if>
+      <if test="record.turnover != null" >
+        turnover = #{record.turnover,jdbcType=SMALLINT},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastmodifieruser != null" >
+        lastModifierUser = #{record.lastmodifieruser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastmodificationtime != null" >
+        lastModificationTime = #{record.lastmodificationtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isdeleted != null" >
+        isDeleted = #{record.isdeleted,jdbcType=BIT},
+      </if>
+      <if test="record.deletedtime != null" >
+        deletedTime = #{record.deletedtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update diabetes_follow_up_info
+    set detailID = #{record.detailid,jdbcType=INTEGER},
+      followUpID = #{record.followupid,jdbcType=INTEGER},
+      regularActivities = #{record.regularactivities,jdbcType=VARCHAR},
+      activityFrequency = #{record.activityfrequency,jdbcType=VARCHAR},
+      eachDuration = #{record.eachduration,jdbcType=VARCHAR},
+      dietaryStatus = #{record.dietarystatus,jdbcType=VARCHAR},
+      diabetesSymptoms = #{record.diabetessymptoms,jdbcType=SMALLINT},
+      diabetesSymptomsSupplement = #{record.diabetessymptomssupplement,jdbcType=VARCHAR},
+      hypoglycemicReaction = #{record.hypoglycemicreaction,jdbcType=SMALLINT},
+      systolicPressure = #{record.systolicpressure,jdbcType=SMALLINT},
+      diastolicPressure = #{record.diastolicpressure,jdbcType=SMALLINT},
+      height = #{record.height,jdbcType=DECIMAL},
+      weight = #{record.weight,jdbcType=DECIMAL},
+      targetWeight = #{record.targetweight,jdbcType=DECIMAL},
+      constitutionalIndex = #{record.constitutionalindex,jdbcType=DECIMAL},
+      targetConstitutionalIndex = #{record.targetconstitutionalindex,jdbcType=DECIMAL},
+      footDorsalArtery = #{record.footdorsalartery,jdbcType=SMALLINT},
+      otherSigns = #{record.othersigns,jdbcType=VARCHAR},
+      dailySmoking = #{record.dailysmoking,jdbcType=SMALLINT},
+      targetDailySmoking = #{record.targetdailysmoking,jdbcType=SMALLINT},
+      dailyAlcohol = #{record.dailyalcohol,jdbcType=SMALLINT},
+      targetDailyAlcohol = #{record.targetdailyalcohol,jdbcType=SMALLINT},
+      weeklyExercisesNumber = #{record.weeklyexercisesnumber,jdbcType=SMALLINT},
+      targetWeeklyExercisesNumber = #{record.targetweeklyexercisesnumber,jdbcType=SMALLINT},
+      exerciseDuration = #{record.exerciseduration,jdbcType=SMALLINT},
+      targetExerciseDuration = #{record.targetexerciseduration,jdbcType=SMALLINT},
+      saltUptake = #{record.saltuptake,jdbcType=SMALLINT},
+      targetSaltUptake = #{record.targetsaltuptake,jdbcType=SMALLINT},
+      psychologicalAdjustment = #{record.psychologicaladjustment,jdbcType=SMALLINT},
+      complianceBehavior = #{record.compliancebehavior,jdbcType=SMALLINT},
+      fastingBloodSugar = #{record.fastingbloodsugar,jdbcType=DECIMAL},
+      glycosylatedHemoglobin = #{record.glycosylatedhemoglobin,jdbcType=DECIMAL},
+      inspectionDate = #{record.inspectiondate,jdbcType=TIMESTAMP},
+      supplementaryExamination = #{record.supplementaryexamination,jdbcType=DECIMAL},
+      medicationCompliance = #{record.medicationcompliance,jdbcType=SMALLINT},
+      adverseDrugReactions = #{record.adversedrugreactions,jdbcType=SMALLINT},
+      diabetesMedicinesInfo = #{record.diabetesmedicinesinfo,jdbcType=VARCHAR},
+      drugName = #{record.drugname,jdbcType=VARCHAR},
+      eachDose = #{record.eachdose,jdbcType=DECIMAL},
+      doseUnit = #{record.doseunit,jdbcType=VARCHAR},
+      insulinPerDose = #{record.insulinperdose,jdbcType=DECIMAL},
+      insulinDoseUnit = #{record.insulindoseunit,jdbcType=VARCHAR},
+      diabetesFollowUpType = #{record.diabetesfollowuptype,jdbcType=SMALLINT},
+      diabetesFollowUpTypeSupplement = #{record.diabetesfollowuptypesupplement,jdbcType=SMALLINT},
+      referralAgency = #{record.referralagency,jdbcType=VARCHAR},
+      referralCauses = #{record.referralcauses,jdbcType=VARCHAR},
+      turnover = #{record.turnover,jdbcType=SMALLINT},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      lastModifierUser = #{record.lastmodifieruser,jdbcType=VARCHAR},
+      lastModificationTime = #{record.lastmodificationtime,jdbcType=TIMESTAMP},
+      isDeleted = #{record.isdeleted,jdbcType=BIT},
+      deletedTime = #{record.deletedtime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.lvpeng.model.DiabetesFollowUpInfo" >
+    update diabetes_follow_up_info
+    <set >
+      <if test="followupid != null" >
+        followUpID = #{followupid,jdbcType=INTEGER},
+      </if>
+      <if test="regularactivities != null" >
+        regularActivities = #{regularactivities,jdbcType=VARCHAR},
+      </if>
+      <if test="activityfrequency != null" >
+        activityFrequency = #{activityfrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="eachduration != null" >
+        eachDuration = #{eachduration,jdbcType=VARCHAR},
+      </if>
+      <if test="dietarystatus != null" >
+        dietaryStatus = #{dietarystatus,jdbcType=VARCHAR},
+      </if>
+      <if test="diabetessymptoms != null" >
+        diabetesSymptoms = #{diabetessymptoms,jdbcType=SMALLINT},
+      </if>
+      <if test="diabetessymptomssupplement != null" >
+        diabetesSymptomsSupplement = #{diabetessymptomssupplement,jdbcType=VARCHAR},
+      </if>
+      <if test="hypoglycemicreaction != null" >
+        hypoglycemicReaction = #{hypoglycemicreaction,jdbcType=SMALLINT},
+      </if>
+      <if test="systolicpressure != null" >
+        systolicPressure = #{systolicpressure,jdbcType=SMALLINT},
+      </if>
+      <if test="diastolicpressure != null" >
+        diastolicPressure = #{diastolicpressure,jdbcType=SMALLINT},
+      </if>
+      <if test="height != null" >
+        height = #{height,jdbcType=DECIMAL},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="targetweight != null" >
+        targetWeight = #{targetweight,jdbcType=DECIMAL},
+      </if>
+      <if test="constitutionalindex != null" >
+        constitutionalIndex = #{constitutionalindex,jdbcType=DECIMAL},
+      </if>
+      <if test="targetconstitutionalindex != null" >
+        targetConstitutionalIndex = #{targetconstitutionalindex,jdbcType=DECIMAL},
+      </if>
+      <if test="footdorsalartery != null" >
+        footDorsalArtery = #{footdorsalartery,jdbcType=SMALLINT},
+      </if>
+      <if test="othersigns != null" >
+        otherSigns = #{othersigns,jdbcType=VARCHAR},
+      </if>
+      <if test="dailysmoking != null" >
+        dailySmoking = #{dailysmoking,jdbcType=SMALLINT},
+      </if>
+      <if test="targetdailysmoking != null" >
+        targetDailySmoking = #{targetdailysmoking,jdbcType=SMALLINT},
+      </if>
+      <if test="dailyalcohol != null" >
+        dailyAlcohol = #{dailyalcohol,jdbcType=SMALLINT},
+      </if>
+      <if test="targetdailyalcohol != null" >
+        targetDailyAlcohol = #{targetdailyalcohol,jdbcType=SMALLINT},
+      </if>
+      <if test="weeklyexercisesnumber != null" >
+        weeklyExercisesNumber = #{weeklyexercisesnumber,jdbcType=SMALLINT},
+      </if>
+      <if test="targetweeklyexercisesnumber != null" >
+        targetWeeklyExercisesNumber = #{targetweeklyexercisesnumber,jdbcType=SMALLINT},
+      </if>
+      <if test="exerciseduration != null" >
+        exerciseDuration = #{exerciseduration,jdbcType=SMALLINT},
+      </if>
+      <if test="targetexerciseduration != null" >
+        targetExerciseDuration = #{targetexerciseduration,jdbcType=SMALLINT},
+      </if>
+      <if test="saltuptake != null" >
+        saltUptake = #{saltuptake,jdbcType=SMALLINT},
+      </if>
+      <if test="targetsaltuptake != null" >
+        targetSaltUptake = #{targetsaltuptake,jdbcType=SMALLINT},
+      </if>
+      <if test="psychologicaladjustment != null" >
+        psychologicalAdjustment = #{psychologicaladjustment,jdbcType=SMALLINT},
+      </if>
+      <if test="compliancebehavior != null" >
+        complianceBehavior = #{compliancebehavior,jdbcType=SMALLINT},
+      </if>
+      <if test="fastingbloodsugar != null" >
+        fastingBloodSugar = #{fastingbloodsugar,jdbcType=DECIMAL},
+      </if>
+      <if test="glycosylatedhemoglobin != null" >
+        glycosylatedHemoglobin = #{glycosylatedhemoglobin,jdbcType=DECIMAL},
+      </if>
+      <if test="inspectiondate != null" >
+        inspectionDate = #{inspectiondate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="supplementaryexamination != null" >
+        supplementaryExamination = #{supplementaryexamination,jdbcType=DECIMAL},
+      </if>
+      <if test="medicationcompliance != null" >
+        medicationCompliance = #{medicationcompliance,jdbcType=SMALLINT},
+      </if>
+      <if test="adversedrugreactions != null" >
+        adverseDrugReactions = #{adversedrugreactions,jdbcType=SMALLINT},
+      </if>
+      <if test="diabetesmedicinesinfo != null" >
+        diabetesMedicinesInfo = #{diabetesmedicinesinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="drugname != null" >
+        drugName = #{drugname,jdbcType=VARCHAR},
+      </if>
+      <if test="eachdose != null" >
+        eachDose = #{eachdose,jdbcType=DECIMAL},
+      </if>
+      <if test="doseunit != null" >
+        doseUnit = #{doseunit,jdbcType=VARCHAR},
+      </if>
+      <if test="insulinperdose != null" >
+        insulinPerDose = #{insulinperdose,jdbcType=DECIMAL},
+      </if>
+      <if test="insulindoseunit != null" >
+        insulinDoseUnit = #{insulindoseunit,jdbcType=VARCHAR},
+      </if>
+      <if test="diabetesfollowuptype != null" >
+        diabetesFollowUpType = #{diabetesfollowuptype,jdbcType=SMALLINT},
+      </if>
+      <if test="diabetesfollowuptypesupplement != null" >
+        diabetesFollowUpTypeSupplement = #{diabetesfollowuptypesupplement,jdbcType=SMALLINT},
+      </if>
+      <if test="referralagency != null" >
+        referralAgency = #{referralagency,jdbcType=VARCHAR},
+      </if>
+      <if test="referralcauses != null" >
+        referralCauses = #{referralcauses,jdbcType=VARCHAR},
+      </if>
+      <if test="turnover != null" >
+        turnover = #{turnover,jdbcType=SMALLINT},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastmodifieruser != null" >
+        lastModifierUser = #{lastmodifieruser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastmodificationtime != null" >
+        lastModificationTime = #{lastmodificationtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdeleted != null" >
+        isDeleted = #{isdeleted,jdbcType=BIT},
+      </if>
+      <if test="deletedtime != null" >
+        deletedTime = #{deletedtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where detailID = #{detailid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.lvpeng.model.DiabetesFollowUpInfo" >
+    update diabetes_follow_up_info
+    set followUpID = #{followupid,jdbcType=INTEGER},
+      regularActivities = #{regularactivities,jdbcType=VARCHAR},
+      activityFrequency = #{activityfrequency,jdbcType=VARCHAR},
+      eachDuration = #{eachduration,jdbcType=VARCHAR},
+      dietaryStatus = #{dietarystatus,jdbcType=VARCHAR},
+      diabetesSymptoms = #{diabetessymptoms,jdbcType=SMALLINT},
+      diabetesSymptomsSupplement = #{diabetessymptomssupplement,jdbcType=VARCHAR},
+      hypoglycemicReaction = #{hypoglycemicreaction,jdbcType=SMALLINT},
+      systolicPressure = #{systolicpressure,jdbcType=SMALLINT},
+      diastolicPressure = #{diastolicpressure,jdbcType=SMALLINT},
+      height = #{height,jdbcType=DECIMAL},
+      weight = #{weight,jdbcType=DECIMAL},
+      targetWeight = #{targetweight,jdbcType=DECIMAL},
+      constitutionalIndex = #{constitutionalindex,jdbcType=DECIMAL},
+      targetConstitutionalIndex = #{targetconstitutionalindex,jdbcType=DECIMAL},
+      footDorsalArtery = #{footdorsalartery,jdbcType=SMALLINT},
+      otherSigns = #{othersigns,jdbcType=VARCHAR},
+      dailySmoking = #{dailysmoking,jdbcType=SMALLINT},
+      targetDailySmoking = #{targetdailysmoking,jdbcType=SMALLINT},
+      dailyAlcohol = #{dailyalcohol,jdbcType=SMALLINT},
+      targetDailyAlcohol = #{targetdailyalcohol,jdbcType=SMALLINT},
+      weeklyExercisesNumber = #{weeklyexercisesnumber,jdbcType=SMALLINT},
+      targetWeeklyExercisesNumber = #{targetweeklyexercisesnumber,jdbcType=SMALLINT},
+      exerciseDuration = #{exerciseduration,jdbcType=SMALLINT},
+      targetExerciseDuration = #{targetexerciseduration,jdbcType=SMALLINT},
+      saltUptake = #{saltuptake,jdbcType=SMALLINT},
+      targetSaltUptake = #{targetsaltuptake,jdbcType=SMALLINT},
+      psychologicalAdjustment = #{psychologicaladjustment,jdbcType=SMALLINT},
+      complianceBehavior = #{compliancebehavior,jdbcType=SMALLINT},
+      fastingBloodSugar = #{fastingbloodsugar,jdbcType=DECIMAL},
+      glycosylatedHemoglobin = #{glycosylatedhemoglobin,jdbcType=DECIMAL},
+      inspectionDate = #{inspectiondate,jdbcType=TIMESTAMP},
+      supplementaryExamination = #{supplementaryexamination,jdbcType=DECIMAL},
+      medicationCompliance = #{medicationcompliance,jdbcType=SMALLINT},
+      adverseDrugReactions = #{adversedrugreactions,jdbcType=SMALLINT},
+      diabetesMedicinesInfo = #{diabetesmedicinesinfo,jdbcType=VARCHAR},
+      drugName = #{drugname,jdbcType=VARCHAR},
+      eachDose = #{eachdose,jdbcType=DECIMAL},
+      doseUnit = #{doseunit,jdbcType=VARCHAR},
+      insulinPerDose = #{insulinperdose,jdbcType=DECIMAL},
+      insulinDoseUnit = #{insulindoseunit,jdbcType=VARCHAR},
+      diabetesFollowUpType = #{diabetesfollowuptype,jdbcType=SMALLINT},
+      diabetesFollowUpTypeSupplement = #{diabetesfollowuptypesupplement,jdbcType=SMALLINT},
+      referralAgency = #{referralagency,jdbcType=VARCHAR},
+      referralCauses = #{referralcauses,jdbcType=VARCHAR},
+      turnover = #{turnover,jdbcType=SMALLINT},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      lastModifierUser = #{lastmodifieruser,jdbcType=VARCHAR},
+      lastModificationTime = #{lastmodificationtime,jdbcType=TIMESTAMP},
+      isDeleted = #{isdeleted,jdbcType=BIT},
+      deletedTime = #{deletedtime,jdbcType=TIMESTAMP}
+    where detailID = #{detailid,jdbcType=INTEGER}
+  </update>
+</mapper>
